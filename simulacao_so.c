@@ -7,36 +7,36 @@
 typedef struct {
     int id;            // Identificador do processo
     char nome[20];     // Nome do processo
-    int em_execucao;   // 1 para em execuÁ„o, 0 para suspenso
+    int em_execucao;   // 1 para em execu√ß√£o, 0 para suspenso
 } Processo;
 
 Processo processos[10];
 int processo_contador = 0; // Quantidade de processos criados
 
-// FunÁ„o para criar um processo
+// Fun√ß√£o para criar um processo
 void criar_processo(int id, const char* nome) {
     processos[processo_contador].id = id;                  // Define o ID do processo
     strcpy(processos[processo_contador].nome, nome);       // Define o nome do processo
-    processos[processo_contador].em_execucao = 0;          // Define que o processo est· suspenso inicialmente
+    processos[processo_contador].em_execucao = 0;          // Define que o processo est√° suspenso inicialmente
     processo_contador++;                                   // Incrementa o contador de processos
     printf("Processo %s criado.\n", nome);                 // Exibe uma mensagem informando que o processo foi criado
 }
 
-// FunÁ„o para iniciar a execuÁ„o de um processo
+// Fun√ß√£o para iniciar a execu√ß√£o de um processo
 void executar_processo(int id) {
     for (int i = 0; i < processo_contador; i++) {           // Percorre todos os processos
         if (processos[i].id == id) {                        // Verifica se o ID corresponde
-            processos[i].em_execucao = 1;                   // Marca o processo como em execuÁ„o
-            printf("Processo %s em execuÁ„o.\n", processos[i].nome);  // Exibe uma mensagem informando
-            break;                                          // Sai do loop, pois j· encontrou o processo
+            processos[i].em_execucao = 1;                   // Marca o processo como em execu√ß√£o
+            printf("Processo %s em execu√ß√£o.\n", processos[i].nome);  // Exibe uma mensagem informando
+            break;                                          // Sai do loop, pois j√° encontrou o processo
         }
     }
 }
 
-// FunÁ„o para suspender um processo
+// Fun√ß√£o para suspender um processo
 void suspender_processo(int id) {
     for (int i = 0; i < processo_contador; i++) {           // Percorre todos os processos
-        if (processos[i].id == id && processos[i].em_execucao) {  // Verifica se o ID corresponde e se est· em execuÁ„o
+        if (processos[i].id == id && processos[i].em_execucao) {  // Verifica se o ID corresponde e se est√° em execu√ß√£o
             processos[i].em_execucao = 0;                   // Marca o processo como suspenso
             printf("Processo %s suspenso.\n", processos[i].nome);  // Exibe uma mensagem informando
             break;                                          // Sai do loop
@@ -44,38 +44,38 @@ void suspender_processo(int id) {
     }
 }
 
-// FunÁ„o para finalizar um processo
+// Fun√ß√£o para finalizar um processo
 void finalizar_processo(int id) {
     for (int i = 0; i < processo_contador; i++) {          // Percorre todos os processos
         if (processos[i].id == id) {                       // Verifica se o ID corresponde
             printf("Processo %s finalizado.\n", processos[i].nome);  // Exibe uma mensagem
-            processos[i] = processos[processo_contador - 1];  // Substitui o processo finalizado pelo ˙ltimo
+            processos[i] = processos[processo_contador - 1];  // Substitui o processo finalizado pelo √∫ltimo
             processo_contador--;                            // Reduz o contador de processos
             break;                                         // Sai do loop
         }
     }
 }
 
-// Definindo a MemÛria Total e disponÌvel
+// Definindo a Mem√≥ria Total e dispon√≠vel
 #define MEMORIA_TOTAL 1024
 int memoria_disponivel = MEMORIA_TOTAL;
 
-// FunÁ„o para alocar memÛria para um processo
+// Fun√ß√£o para alocar mem√≥ria para um processo
 int alocar_memoria(int id, int tamanho) {
-    if (memoria_disponivel >= tamanho) {               // Verifica se h· memÛria suficiente
-        memoria_disponivel -= tamanho;                 // Subtrai o tamanho da memÛria disponÌvel
-        printf("MemÛria alocada para o processo %d. MemÛria disponÌvel: %d\n", id, memoria_disponivel);
+    if (memoria_disponivel >= tamanho) {               // Verifica se h√° mem√≥ria suficiente
+        memoria_disponivel -= tamanho;                 // Subtrai o tamanho da mem√≥ria dispon√≠vel
+        printf("Mem√≥ria alocada para o processo %d. Mem√≥ria dispon√≠vel: %d\n", id, memoria_disponivel);
         return 1;                                      // Retorna sucesso
     } else {
-        printf("MemÛria insuficiente para o processo %d.\n", id);
+        printf("Mem√≥ria insuficiente para o processo %d.\n", id);
         return 0;                                      // Retorna falha
     }
 }
 
-// FunÁ„o para liberar memÛria alocada
+// Fun√ß√£o para liberar mem√≥ria alocada
 void liberar_memoria(int id, int tamanho) {
-    memoria_disponivel += tamanho;                    // Adiciona o tamanho ‡ memÛria disponÌvel
-    printf("MemÛria liberada pelo processo %d. MemÛria disponÌvel: %d\n", id, memoria_disponivel);
+    memoria_disponivel += tamanho;                    // Adiciona o tamanho √† mem√≥ria dispon√≠vel
+    printf("Mem√≥ria liberada pelo processo %d. Mem√≥ria dispon√≠vel: %d\n", id, memoria_disponivel);
 }
 
 // Estrutura para Arquivo
@@ -87,7 +87,7 @@ typedef struct {
 Arquivo arquivos[10];
 int arquivo_contador = 0;
 
-// FunÁ„o para criar um arquivo
+// Fun√ß√£o para criar um arquivo
 void criar_arquivo(const char* nome) {
     strcpy(arquivos[arquivo_contador].nome, nome);
     strcpy(arquivos[arquivo_contador].conteudo, "");
@@ -95,30 +95,30 @@ void criar_arquivo(const char* nome) {
     printf("Arquivo %s criado.\n", nome);
 }
 
-// FunÁ„o para ler o conte˙do de um arquivo
+// Fun√ß√£o para ler o conte√∫do de um arquivo
 void ler_arquivo(const char* nome) {
     for (int i = 0; i < arquivo_contador; i++) {
         if (strcmp(arquivos[i].nome, nome) == 0) {
-            printf("Conte˙do do arquivo %s: %s\n", nome, arquivos[i].conteudo);
+            printf("Conte√∫do do arquivo %s: %s\n", nome, arquivos[i].conteudo);
             return;
         }
     }
-    printf("Arquivo %s n„o encontrado.\n", nome);
+    printf("Arquivo %s n√£o encontrado.\n", nome);
 }
 
-// FunÁ„o para escrever no arquivo
+// Fun√ß√£o para escrever no arquivo
 void escrever_arquivo(const char* nome, const char* conteudo) {
     for (int i = 0; i < arquivo_contador; i++) {
         if (strcmp(arquivos[i].nome, nome) == 0) {
             strcpy(arquivos[i].conteudo, conteudo);
-            printf("Conte˙do escrito no arquivo %s.\n", nome);
+            printf("Conte√∫do escrito no arquivo %s.\n", nome);
             return;
         }
     }
-    printf("Arquivo %s n„o encontrado.\n", nome);
+    printf("Arquivo %s n√£o encontrado.\n", nome);
 }
 
-// FunÁ„o para deletar o arquivo
+// Fun√ß√£o para deletar o arquivo
 void deletar_arquivo(const char* nome) {
     for (int i = 0; i < arquivo_contador; i++) {
         if (strcmp(arquivos[i].nome, nome) == 0) {
@@ -128,29 +128,29 @@ void deletar_arquivo(const char* nome) {
             return;
         }
     }
-    printf("Arquivo %s n„o encontrado.\n", nome);
+    printf("Arquivo %s n√£o encontrado.\n", nome);
 }
 
-// FunÁ„o para iniciar o sistema
+// Fun√ß√£o para iniciar o sistema
 void iniciar_sistema() {
     printf("Sistema operacional iniciado.\n");
 }
 
-// FunÁ„o para exibir o status atual do sistema
+// Fun√ß√£o para exibir o status atual do sistema
 void exibir_status() {
     printf("Status do sistema:\n");
-    printf("MemÛria disponÌvel: %d\n", memoria_disponivel);
+    printf("Mem√≥ria dispon√≠vel: %d\n", memoria_disponivel);
     printf("Processos ativos:\n");
     for (int i = 0; i < processo_contador; i++) {
-        printf("ID: %d, Nome: %s, Em execuÁ„o: %d\n", processos[i].id, processos[i].nome, processos[i].em_execucao);
+        printf("ID: %d, Nome: %s, Em execu√ß√£o: %d\n", processos[i].id, processos[i].nome, processos[i].em_execucao);
     }
     printf("Arquivos:\n");
     for (int i = 0; i < arquivo_contador; i++) {
-        printf("Nome: %s, Conte˙do: %s\n", arquivos[i].nome, arquivos[i].conteudo);
+        printf("Nome: %s, Conte√∫do: %s\n", arquivos[i].nome, arquivos[i].conteudo);
     }
 }
 
-// FunÁ„o principal
+// Fun√ß√£o principal
 int main() {
 	setlocale(LC_ALL,"portuguese");
 	
@@ -158,21 +158,21 @@ int main() {
 
     // Criando e executando um processo
     criar_processo(1, "Processo1");
-    alocar_memoria(1, 100); // Alocando 100 unidades de memÛria para o Processo1
+    alocar_memoria(1, 100); // Alocando 100 unidades de mem√≥ria para o Processo1
     executar_processo(1); // Executando o processo
 
     // Criando um arquivo e escrevendo no arquivo
     criar_arquivo("arquivo1");
-    escrever_arquivo("arquivo1", "Conte˙do do arquivo");
+    escrever_arquivo("arquivo1", "Conte√∫do do arquivo");
 
-    // Ler o conte˙do do arquivo
+    // Ler o conte√∫do do arquivo
     ler_arquivo("arquivo1");
 
     // Suspendendo o processo
     suspender_processo(1);
 
-    // Liberando a memÛria e finalizando o processo
-    liberar_memoria(1, 100); // Liberando a memÛria alocada para o processo
+    // Liberando a mem√≥ria e finalizando o processo
+    liberar_memoria(1, 100); // Liberando a mem√≥ria alocada para o processo
     finalizar_processo(1);
 
     // Exibindo o status atual do sistema
@@ -183,9 +183,9 @@ int main() {
     alocar_memoria(2, 200);
     executar_processo(2);
     criar_arquivo("arquivo2");
-    escrever_arquivo("arquivo2", "Outro conte˙do");
+    escrever_arquivo("arquivo2", "Outro conte√∫do");
 
-    // Exibindo o status do sistema novamente apÛs alteraÁıes
+    // Exibindo o status do sistema novamente ap√≥s altera√ß√µes
     exibir_status();
 
     // Finalizando o segundo processo e liberando os recursos
